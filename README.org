@@ -29,7 +29,7 @@ This needs you to enter your password. And once it's done, you can
 then access server by ~ssh username@address~ without password any
 more.
 
-3. Config the _ ~/.ssh/config_ file.
+3. Config the _your_home_directory/.ssh/config_ file.
 Now we can step further to let ssh remember our address by editing the
 SSH configuration file right under ~/.ssh/config. If you don't have
 this file, simply create it by ~vim ~/.ssh/config~
