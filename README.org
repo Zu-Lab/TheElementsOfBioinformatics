@@ -1,0 +1,43 @@
+#+title: The Elements of Bioinformatics
+
+* Programming
+
+** SSH
+*** Use ssh-key to access remote server easily.    
+Besides using ~ssh username@address~ and then enter your password to
+access remote server, you can use ssh-key to directly access it by
+typing like ~ssh name~ without password and address. Here are the
+references: [[https://www.ssh.com/academy/ssh/keygen][generating SSH-key]] and
+[[https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent][Github SSH-key]].
+
+1. Generate public and private SSH key pair.
+#+BEGIN_SRC bash
+  # use -t to specify the algorithm for generating the key
+  # use -f to specify the filename for the key pair, optinal.
+  ssh-keygen -t ed25519 -f ~/.ssh/my_key
+#+END_SRC
+This will generate two files under ~/.ssh. One is the private key
+stored in your local computer and do not share it with others. The
+other is the public key named as ~/.ssh/my_key.pub. The public key
+should be copied to your remote server.
+
+2. Copy the public SSH key to remote server
+#+BEGIN_SRC bash
+  ssh-copy-id -i ~/.ssh/my_key username@address
+#+END_SRC
+This needs you to enter your password. And once it's done, you can
+then access server by ~ssh username@address~ without password any
+more.
+
+3. Config the _~/.ssh/config_ file.
+Now we can step further to let ssh remember our address by editing the
+SSH configuration file right under ~/.ssh/config. If you don't have
+this file, simply create it by ~vim ~/.ssh/config~
+#+BEGIN_SRC ssh
+  Host user
+    HostName xxx.xxx.xx.xx
+    User username
+    PreferredAuthentications publickey
+    IdentityFile ~/.ssh/my_key
+#+END_SRC
+Now you can access the server by simply using ~ssh user~.
