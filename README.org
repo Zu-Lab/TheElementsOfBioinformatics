@@ -41,3 +41,31 @@ this file, simply create it by ~vim ~/.ssh/config~
     IdentityFile ~/.ssh/my_key
 #+END_SRC
 Now you can access the server by simply using ~ssh user~.
+
+** Makefile
+   GNU make uses a _Makefile_ to control a work pipeline. Here a work
+   pipeline is multiple tasks with dependencies, and the dependencies
+   are inferred by ~make~ through the file (or output) dependencies.
+   For example, task A generates ~a.output~, and task B uses
+   ~a.output~ to generate ~b.output~, then we say task B depends on
+   task A. We can use Makefile, a config file, to express this.
+
+#+BEGIN_SRC make
+  b.output : a.output
+  [TAB]echo "Generate b.output" 
+  [TAB]cat a.output > b.output
+  a.output :
+  [TAB]echo "Generate a.output"
+  [TAB]touch a.output
+#+END_SRC
+  You can save the lines above into a file like /Makefile/. Then run
+  ~make~. The system will generate both /a.output/ and /b.output/, if
+  no such files exist before.
+  
+  1. By default, make will search /Makefile/ or /makefile/ under
+     current path. You can use ~make -f /your_make_file/~ to let run
+     whatever Makefile you named.
+  2. If /a.output/ exists, then ~make~ will run the rule under
+     ~b.output : a.output~, i.e., ~echo "Generate b.output"~ and
+     ~cat a.output > b.output~
+** Snakemake
