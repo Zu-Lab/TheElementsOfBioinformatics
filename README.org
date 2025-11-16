@@ -69,3 +69,81 @@ Now you can access the server by simply using ~ssh user~.
      ~b.output : a.output~, i.e., ~echo "Generate b.output"~ and
      ~cat a.output > b.output~
 ** Snakemake
+*** Why we need it
+ - I want to submit 1,000 jobs.
+ - Some of them are failed, I need to rerun them.
+ - I have a pipeline, which means jobs have dependencies
+** Jobs manager:
+- handle jobs' dependencies
+- automatically run the pipeline from where it failed
+- if some intermedia files / scripts are updated, then automatically
+  update all the later rules depend on them.
+** Snakemake = Snake[Python] + make[GNU make]
+*** [[https://en.wikipedia.org/wiki/Make_(software)][make]]: dependency-tracking build utilities, written in 1976
+- Still widely used now, especially [[https://www.gnu.org/software/make/manual/make.html#Introduction][GNU make]]
+- Drawback:
+  - Lack of configuration file support, like *yaml*, *json*.
+  - Lack of support for jobs on HPC
+- Snakemake may die in the future, but make should be still alive.
+*** Snakemake:
+- written in Python, which makes it simple to use
+- support config files like *yaml*, *json*.
+- support HPC: both PBS and Slurm
+*** How it looks like:
+#+BEGIN_SRC snakemake
+   ## optional config file
+   configfile: "config.yaml"
+   content = "say hi"
+   samples = ["a", "b"]
+   ## all the output files you want to have
+   rule all:
+       input:
+          expand("flag/pre_{s}.done", s = samples)
+          expand("flag/first_{s}.done", s = samples)
+
+   ## then set up the rules about how to generate them
+   rule pre:
+       output:
+          # s will be infered based on rule all output
+          # here it will be a or b.
+          # snakemake will run s=a and s=b in parallel if possible
+          # touch will be automatically  generate the flag file
+          # once the rule is done.
+          touch("flag/pre_{s}.done")
+       log:
+          "log/{s}.log"
+       shell:
+          """
+          # wildcards.s to get the a / b
+          echo "pre:" {content} {wildcards.s} 2> {log}
+          """
+  rule first:
+      # snakemake will know that it depends on the output of pre
+      # then the rule will run after pre
+      input:
+          "flag/pre_{s}.done"
+      output:
+          touch("flag/first_{s}.done")
+      log:
+          "log/{s}.log"
+      shell:
+          """
+          echo "first:" {content} {wildcards.s} 2> {log}
+          """
+#+END_SRC
+- Then save the above into a file named *demo.snakefile*.
+- =snakemake --snakefile demo.snakefile= to run the snakemake.
+** Summary
+- *snakefile*
+  - just python syntax + snakemake key words, such as *config*,
+    *rule*, *expand*, *wildcards* and so on.
+  - [OPTION but good in practice] *config.yaml* to claim variables
+- The *input* in *rule all* is used to claim all the final outputs
+- *input* and *output* of *rules* to organize the depencies of tasks.
+- *wildcards*
+  - inferred based on file names
+  - the key mechanism to run multiple jobs in parallel
+
+  
+
+   
