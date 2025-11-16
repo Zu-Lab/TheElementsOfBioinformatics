@@ -134,15 +134,15 @@ Now you can access the server by simply using ~ssh user~.
  - Then save the above into a file named *demo.snakefile*.
  - =snakemake --snakefile demo.snakefile= to run the snakemake.
 **** Summary
-  - *snakefile*
-    - just python syntax + snakemake key words, such as *config*,
-      *rule*, *expand*, *wildcards* and so on.
-    - [OPTION but good in practice] *config.yaml* to claim variables
-  - The *input* in *rule all* is used to claim all the final outputs
-  - *input* and *output* of *rules* to organize the depencies of tasks.
-  - *wildcards*
-    - inferred based on file names
-    - the key mechanism to run multiple jobs in parallel
+    - *snakefile*
+      - just python syntax + snakemake key words, such as *config*,
+        *rule*, *expand*, *wildcards* and so on.
+      - [OPTION but good in practice] *config.yaml* to claim variables
+    - The *input* in *rule all* is used to claim all the final outputs
+    - *input* and *output* of *rules* to organize the depencies of tasks.
+    - *wildcards*
+      - inferred based on file names
+      - the key mechanism to run multiple jobs in parallel
 
   
 
