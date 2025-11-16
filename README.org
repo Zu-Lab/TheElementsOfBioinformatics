@@ -9,6 +9,7 @@ access remote server, you can use ssh-key to directly access it by
 typing like ~ssh name~ without password and address. Here are the
 references: [[https://www.ssh.com/academy/ssh/keygen][generating SSH-key]] and
 [[https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent][Github SSH-key]].
+
 a. Generate public and private SSH key pair.
 #+BEGIN_SRC bash
   # use -t to specify the algorithm for generating the key
