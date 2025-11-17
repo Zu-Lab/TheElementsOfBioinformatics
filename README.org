@@ -1,5 +1,4 @@
 #+title: The Elements of Bioinformatics
-#+startup: inlineimages
 
 * Programming
 ** SSH
@@ -144,8 +143,5 @@ Now you can access the server by simply using ~ssh user~.
       - inferred based on file names
       - the key mechanism to run multiple jobs in parallel
 
-* Statistics
-** Random variables
-   We use \(X\) to represent a random variable.
 
    
