@@ -48,7 +48,7 @@ Now you can access the server by simply using ~ssh user~.
    For example, task A generates ~a.output~, and task B uses
    ~a.output~ to generate ~b.output~, then we say task B depends on
    task A. We can use Makefile, a config file, to express this.
-
+*** Example
 #+BEGIN_SRC make
   b.output : a.output
   [TAB]echo "Generate b.output" 
@@ -67,6 +67,22 @@ Now you can access the server by simply using ~ssh user~.
   2. If /a.output/ exists, then ~make~ will run the rule under
      ~b.output : a.output~, i.e., ~echo "Generate b.output"~ and
      ~cat a.output > b.output~
+*** Another example
+#+BEGIN_SRC make
+  # use .PHONY to declare it's not actual filename
+  # And alwasy execute the task
+  .PHONY : install
+  install : b.output
+  # use $@ to represent the target
+  # use $< to represent the first prerequisite
+  b.output : a.output
+	echo "Generate $@"
+	cat $< > $@
+  a.output :
+	echo "Generate $@"
+	touch $@
+#+END_SRC
+    
      
 ** Snakemake
    [[https://snakemake.readthedocs.io/en/stable/][Snakemake]] is Snake [Python] + make. It's widely used for complex
@@ -89,7 +105,7 @@ Now you can access the server by simply using ~ssh user~.
       # You can also use pip to install snakemake, please check the document.
     #+END_SRC 
     
-*** A typical Snakemake script
+*** Example
 #+BEGIN_SRC snakemake
    ## optional config file
    configfile: "config.yaml"
