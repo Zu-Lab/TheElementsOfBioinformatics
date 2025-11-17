@@ -1,7 +1,7 @@
 #+title: The Elements of Bioinformatics
+#+startup: inlineimages
 
 * Programming
-
 ** SSH
 *** Use ssh-key to access remote server easily.    
 Besides using ~ssh username@address~ and then enter your password to
@@ -144,6 +144,8 @@ Now you can access the server by simply using ~ssh user~.
       - inferred based on file names
       - the key mechanism to run multiple jobs in parallel
 
-  
+* Statistics
+** Random variables
+   We use \(X\) to represent a random variable.
 
    
