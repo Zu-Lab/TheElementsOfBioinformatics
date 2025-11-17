@@ -41,7 +41,7 @@ this file, simply create it by ~vim ~/.ssh/config~
 #+END_SRC
 Now you can access the server by simply using ~ssh user~.
 
-** Makefile
+** Make
    GNU make uses a _Makefile_ to control a work pipeline. Here a work
    pipeline is multiple tasks with dependencies, and the dependencies
    are inferred by ~make~ through the file (or output) dependencies.
@@ -67,8 +67,9 @@ Now you can access the server by simply using ~ssh user~.
   2. If /a.output/ exists, then ~make~ will run the rule under
      ~b.output : a.output~, i.e., ~echo "Generate b.output"~ and
      ~cat a.output > b.output~
+     
 ** Snakemake
-   Snakemake is Snake [Python] + make. It's widely used for complex
+   [[https://snakemake.readthedocs.io/en/stable/][Snakemake]] is Snake [Python] + make. It's widely used for complex
    pipeline management in bioinformatics.
    a. It's a job manager:
    - Handle jobs' dependencies like what make does.
@@ -80,51 +81,58 @@ Now you can access the server by simply using ~ssh user~.
      and so on.
    - It supports environment control, such as conda.
    - It supports the usages under HPC, such as slurm and PBS system.
-     
-**** A typical Snakemake script
- #+BEGIN_SRC snakemake
-    ## optional config file
-    configfile: "config.yaml"
+   
+*** Installation
+    #+BEGIN_SRC shell
+      # Use conda/mamba install ~snakemake~.
+      mamba install -c conda-forge -c bioconda -c nodefaults snakemake
+      # You can also use pip to install snakemake, please check the document.
+    #+END_SRC 
+    
+*** A typical Snakemake script
+#+BEGIN_SRC snakemake
+   ## optional config file
+   configfile: "config.yaml"
                 
-    content = "say hi"
-    samples = ["a", "b"]
-    ## all the output files you want to have
-    rule all:
-        input:
-           expand("flag/pre_{s}.done", s = samples)
-           expand("flag/first_{s}.done", s = samples)
-
-    ## then set up the rules about how to generate them
-    rule pre:
-        output:
-           # s will be infered based on rule all output
-           # here it will be a or b.
-           # snakemake will run s=a and s=b in parallel if possible
-           # touch will be automatically  generate the flag file
-           # once the rule is done.
-           touch("flag/pre_{s}.done")
-        log:
-           "log/{s}.log"
-        shell:
-           """
-           # wildcards.s to get the a / b
-           echo "pre:" {content} {wildcards.s} 2> {log}
-           """
-   rule first:
-       # snakemake will know that it depends on the output of pre
-       # then the rule will run after pre
+   content = "say hi"
+   samples = ["a", "b"]
+   ## all the output files you want to have
+   rule all:
        input:
-           "flag/pre_{s}.done"
+          expand("flag/pre_{s}.done", s = samples)
+          expand("flag/first_{s}.done", s = samples)
+
+   ## then set up the rules about how to generate them
+   rule pre:
        output:
-           touch("flag/first_{s}.done")
+          # s will be infered based on rule all output
+          # here it will be a or b.
+          # snakemake will run s=a and s=b in parallel if possible
+          # touch will be automatically  generate the flag file
+          # once the rule is done.
+          touch("flag/pre_{s}.done")
        log:
-           "log/{s}.log"
+          "log/{s}.log"
        shell:
-           """
-           echo "first:" {content} {wildcards.s} 2> {log}
-           """
- #+END_SRC
- Use ~snakemake --snakefile demo.snakefile~ to run the above one
- (saved as /demo.snakefile/).
+          """
+          # wildcards.s to get the a / b
+          echo "pre:" {content} {wildcards.s} 2> {log}
+          """
+  rule first:
+      # snakemake will know that it depends on the output of pre
+      # then the rule will run after pre
+      input:
+          "flag/pre_{s}.done"
+      output:
+          touch("flag/first_{s}.done")
+      log:
+          "log/{s}.log"
+      shell:
+          """
+          echo "first:" {content} {wildcards.s} 2> {log}
+          """
+#+END_SRC
+Use ~snakemake --snakefile demo.snakefile~ to run the above one
+(saved as /demo.snakefile/).
 
    
