@@ -34,9 +34,9 @@
 
   <subsection|Conditional probability>
 
-  <math|p<around*|(|x<around*|\||y|\<nobracket\>>|)>> is a conditional
-  probability density function. It's a p.d.f for the random variable <math|X>
-  given a fixed value of <math|Y=y>.\ 
+  <math|X<around*|\||Y=y\<sim\>|\|>p<around*|(|x<around*|\||y|\<nobracket\>>|)>>
+  is a conditional probability density function. It's a p.d.f for the random
+  variable <math|X> given a fixed value of <math|Y=y>.\ 
 
   <math|p<around*|(|x<around*|\||y|\<nobracket\>>|)>=<frac|p<around*|(|x,y|)>|p<around*|(|y|)>>>,
   the definitation of conditinal p.d.f, where <math|p<around*|(|x,y|)>> is
@@ -49,7 +49,8 @@
   <strong|Law of total probability>: <math|p<around*|(|y|)>=<big|int>
   p<around*|(|y<around*|\||x|\<nobracket\>>|)>p<around*|(|x|)> dx>. \ 
 
-  \;
+  <strong|Independence>: <math|p<around*|(|x,y|)>=p<around*|(|x|)>\<cdot\>
+  p<around*|(|y|)>>
 
   <subsection|Expectation>
 
@@ -76,6 +77,16 @@
 
   <math|Linear operator:E<around*|(|aX+b|)>= aE<around*|(|X|)>+b>
 
+  We usually use <math|\<mu\><rsub|X>> to represent <math|E<around*|(|X|)>>.
+
+  Let <math|<with|font-series|bold|x>=<around*|(|x<rsub|1>,\<ldots\>.,x<rsub|n>|)><rsup|>>
+  represent <math|n> samples. Then the sample-version expectation is defined
+  as:
+
+  <math|<wide|E|~><around*|(|X|)>=<big|sum><rsub|i=1><rsup|n>x<rsub|i>/n=<with|font-series|bold|1<rsup|T><with|font-series|bold|x>>/n>.
+  Here <math|<with|font-series|bold|1>=<around*|(|1,\<ldots\>.,1|)> with size
+  of n.>
+
   <\strong>
     \;
 
@@ -95,6 +106,37 @@
 
   <math|Var<around*|(|aX+b|)>=Var<around*|(|aX|)>=a<rsup|2>Var<around*|(|X|)>>
 
+  We usually use <math|\<sigma\><rsup|2><rsub|X>> to represent
+  <math|Var<around*|(|X|)>>, and <math|\<sigma\><rsub|X>=<sqrt|\<sigma\><rsup|2><rsub|X>>>
+  to represent standard deviation of <math|X>.
+
+  <subsection|Covariance>
+
+  <math|Cov<around*|(|X,Y|)>=E<around*|(|X-EX|)><around*|(|Y-EY|)>=E<around*|(|XY|)>-EX\<cdot\>
+  EY>
+
+  <math|Var<around*|(|aX+bY|)>= a<rsup|2>Var<around*|(|X|)>+b<rsup|2>Var<around*|(|Y|)>+2abCov<around*|(|X,Y|)>>
+
+  <subsection|Pearson correlation>
+
+  <math|\<rho\><rsub|XY>=Corr<around*|(|X,Y|)>=<frac|Cov<around*|(|X,Y|)>|\<sigma\><rsub|X>\<cdot\>\<sigma\><rsub|Y>>>
+
+  <with|font-series|bold|Note>: <math|<around*|\|||\<nobracket\>>Cov<around*|(|X,Y|)><around*|\|||\<nobracket\>>\<leqslant\>\<sigma\><rsub|X>\<cdot\>\<sigma\><rsub|Y>>
+
+  Hint: <math|h<around*|(|t|)>=E<around*|(|<around*|(|X-EX|)>\<cdot\>
+  t+<around*|(|Y-EY|)>|)><rsup|2>\<geqslant\>0 for \<forall\>t>.\ 
+
+  <subsection|Spearman's (rank) correlation>
+
+  It's defined for a pair of samples <math|<with|font-series|bold|<with|font-series|bold|<with|font-series|bold|x>>>>
+  and <math|<with|font-series|bold|y>> with the same sample size <math|n>.
+
+  Let <math|R<around*|(|<with|font-series|bold|x>|)>> is the ranking of
+  <with|font-series|bold|x>. Then Spearman's correlation is defained as\ 
+
+  <math|\<gamma\><rsub|s><around*|(|<with|font-series|bold|x>,<with|font-series|bold|y>|)>=<wide|\<rho\>|~><rsub|<with|font-series|bold|x><with|font-series|bold|y>><rsub|>>,
+  where <math|<wide|\<rho\>|~>> is a sample-version of Pearson correlation.\ 
+
   \;
 </body>
 
@@ -111,7 +153,10 @@
     <associate|auto-2|<tuple|1.1|1|../../.TeXmacs/texts/scratch/no_name_1.tm>>
     <associate|auto-3|<tuple|1.2|1|../../.TeXmacs/texts/scratch/no_name_1.tm>>
     <associate|auto-4|<tuple|1.3|1|../../.TeXmacs/texts/scratch/no_name_1.tm>>
-    <associate|auto-5|<tuple|1.4|?|../../.TeXmacs/texts/scratch/no_name_1.tm>>
+    <associate|auto-5|<tuple|1.4|2|../../.TeXmacs/texts/scratch/no_name_1.tm>>
+    <associate|auto-6|<tuple|1.5|2|../../.TeXmacs/texts/scratch/no_name_1.tm>>
+    <associate|auto-7|<tuple|1.6|?|../../.TeXmacs/texts/scratch/no_name_1.tm>>
+    <associate|auto-8|<tuple|1.7|?|../../.TeXmacs/texts/scratch/no_name_1.tm>>
   </collection>
 </references>
 
@@ -133,6 +178,14 @@
       <with|par-left|<quote|1tab>|1.3<space|2spc>Expectation
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-4>>
+
+      <with|par-left|<quote|1tab>|1.4<space|2spc> Variance
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-5>>
+
+      <with|par-left|<quote|1tab>|1.5<space|2spc>Covariance
+      \ <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-6>>
     </associate>
   </collection>
 </auxiliary>
