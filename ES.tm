@@ -34,7 +34,7 @@
 
   <subsection|Conditional probability>
 
-  <math|X<around*|\||Y=y\<sim\>|\|>p<around*|(|x<around*|\||y|\<nobracket\>>|)>>
+  <math|X<around*|\||Y=y\<sim\>|\<nobracket\>>p<around*|(|x<around*|\||y|\<nobracket\>>|)>>
   is a conditional probability density function. It's a p.d.f for the random
   variable <math|X> given a fixed value of <math|Y=y>.\ 
 
@@ -83,7 +83,7 @@
   represent <math|n> samples. Then the sample-version expectation is defined
   as:
 
-  <math|<wide|E|~><around*|(|X|)>=<big|sum><rsub|i=1><rsup|n>x<rsub|i>/n=<with|font-series|bold|1<rsup|T><with|font-series|bold|x>>/n>.
+  <math|<wide|E|~><around*|(|X|)>=<big|sum><rsub|i=1><rsup|n>x<rsub|i>/n=<with|font-series|bold|1\<cdot\><rsup|><with|font-series|bold|x<rsup|T>>>/n>.
   Here <math|<with|font-series|bold|1>=<around*|(|1,\<ldots\>.,1|)> with size
   of n.>
 
@@ -149,14 +149,14 @@
 
 <\references>
   <\collection>
-    <associate|auto-1|<tuple|1|1|../../.TeXmacs/texts/scratch/no_name_1.tm>>
-    <associate|auto-2|<tuple|1.1|1|../../.TeXmacs/texts/scratch/no_name_1.tm>>
-    <associate|auto-3|<tuple|1.2|1|../../.TeXmacs/texts/scratch/no_name_1.tm>>
-    <associate|auto-4|<tuple|1.3|1|../../.TeXmacs/texts/scratch/no_name_1.tm>>
-    <associate|auto-5|<tuple|1.4|2|../../.TeXmacs/texts/scratch/no_name_1.tm>>
-    <associate|auto-6|<tuple|1.5|2|../../.TeXmacs/texts/scratch/no_name_1.tm>>
-    <associate|auto-7|<tuple|1.6|?|../../.TeXmacs/texts/scratch/no_name_1.tm>>
-    <associate|auto-8|<tuple|1.7|?|../../.TeXmacs/texts/scratch/no_name_1.tm>>
+    <associate|auto-1|<tuple|1|1>>
+    <associate|auto-2|<tuple|1.1|1>>
+    <associate|auto-3|<tuple|1.2|1>>
+    <associate|auto-4|<tuple|1.3|1>>
+    <associate|auto-5|<tuple|1.4|2>>
+    <associate|auto-6|<tuple|1.5|2>>
+    <associate|auto-7|<tuple|1.6|2>>
+    <associate|auto-8|<tuple|1.7|2>>
   </collection>
 </references>
 
@@ -184,8 +184,16 @@
       <no-break><pageref|auto-5>>
 
       <with|par-left|<quote|1tab>|1.5<space|2spc>Covariance
-      \ <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-6>>
+
+      <with|par-left|<quote|1tab>|1.6<space|2spc>Pearson correlation
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-7>>
+
+      <with|par-left|<quote|1tab>|1.7<space|2spc>Spearman's (rank)
+      correlation <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-8>>
     </associate>
   </collection>
 </auxiliary>
