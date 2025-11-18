@@ -82,8 +82,6 @@ Now you can access the server by simply using ~ssh user~.
 	echo "Generate $@"
 	touch $@
 #+END_SRC
-    
-     
 ** Snakemake
    [[https://snakemake.readthedocs.io/en/stable/][Snakemake]] is Snake [Python] + make. It's widely used for complex
    pipeline management in bioinformatics.
